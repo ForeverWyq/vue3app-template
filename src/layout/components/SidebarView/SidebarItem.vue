@@ -1,9 +1,9 @@
 <template>
   <template v-if="!isHidden">
-    <el-menu-item v-if="!hasChild" :index="resolvePath(item.path)">
+    <el-menu-item v-if="!hasChild" :index="path">
       <title-item :meta="item.meta || {}" />
     </el-menu-item>
-    <el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu v-else :index="path">
       <template #title>
         <title-item :meta="item.meta || {}" />
       </template>
@@ -11,7 +11,7 @@
         v-for="child in item.children"
         :key="child.path"
         :item="child"
-        :base-path="resolvePath(child.path)"
+        :base-path="path"
       />
     </el-sub-menu>
   </template>
@@ -38,6 +38,10 @@ const hasChild = computed(() => {
   return children.length > 0
 })
 
+const path = computed(() => {
+  return resolvePath(props.item.path)
+})
+
 function resolvePath(routePath: string) {
   if (!routePath) {
     return ''
@@ -45,6 +49,6 @@ function resolvePath(routePath: string) {
   if (routePath[0] === '/') {
     return routePath
   }
-  return props.basePath + routePath
+  return `${props.basePath}/${routePath}`
 }
 </script>
