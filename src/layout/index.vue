@@ -33,7 +33,7 @@ import SidebarView from './components/SidebarView/index.vue'
   width: 100%;
   height: 100%;
   --navbarHeader: 60px;
-  --navbarBgColor: var(--el-color-primary-light-8);
+  --navbarBgColor: transparent;
   --navbarTextColor: var(--el-text-color-primary);
   .layout-aside {
     color: var(--el-text-color-primary);
